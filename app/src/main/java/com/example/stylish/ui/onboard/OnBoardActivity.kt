@@ -9,6 +9,7 @@ import com.example.stylish.R
 import com.example.stylish.adapter.SplashAdapter
 import com.example.stylish.databinding.ActivityOnBoardBinding
 import com.example.stylish.models.Splash
+import com.example.stylish.ui.auth.AuthActivity
 import com.example.stylish.ui.auth.login.LoginActivity
 
 class OnBoardActivity : AppCompatActivity() {
@@ -67,7 +68,7 @@ class OnBoardActivity : AppCompatActivity() {
                 if (currentItem == 2) {
                     binding?.nextTextButton?.text = "Get started"
                     startActivity(
-                        Intent(this@OnBoardActivity, LoginActivity::class.java)
+                        Intent(this@OnBoardActivity, AuthActivity::class.java)
                     )
                 }
             }
@@ -80,7 +81,7 @@ class OnBoardActivity : AppCompatActivity() {
                 } else if (currentItem == 2) {
                     binding?.nextTextButton?.text = "Get started"
                     startActivity(
-                        Intent(this@OnBoardActivity, LoginActivity::class.java)
+                        Intent(this@OnBoardActivity, AuthActivity::class.java)
                     )
                 }
             }

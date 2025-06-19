@@ -6,4 +6,5 @@
     <color name="input_color">#F3F3F3</color>
     <color name="input_stroke">#A8A8A9</color>
     <color name="bg">#FDFDFD</color>
+    <color name="login_btn_color">#F38F9F</color>
 </resources>

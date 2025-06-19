@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="@dimen/auth_padding"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.auth.login.LoginFragment">
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <EditText
+           android:textColorHint="@color/black"
+           android:textColor="@color/black"
+           android:hint="Username or email"
+           android:paddingHorizontal="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="55dp"
+           android:background="@drawable/custom_auth_input"
+           app:layout_constraintTop_toTopOf="parent"
+           android:layout_marginTop="36dp"
+           android:inputType="text"
+           app:layout_constraintStart_toStartOf="parent"
+           android:id="@+id/emailEditText" />
+
+       <EditText
+           android:textColorHint="@color/black"
+           android:textColor="@color/black"
+           android:hint="Password"
+           android:paddingHorizontal="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="55dp"
+           android:background="@drawable/custom_auth_input"
+           app:layout_constraintTop_toBottomOf="@id/emailEditText"
+           android:layout_marginTop="31dp"
+           android:inputType="textPassword"
+           app:layout_constraintStart_toStartOf="parent"
+           android:id="@+id/passwordEditText" />
+
+       <TextView
+           android:id="@+id/forgotPassword"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Forgot Password?"
+           android:textColor="@color/primary"
+           android:textSize="12sp"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+           android:layout_marginTop="9dp" />
+
+       <Button
+           android:id="@+id/loginButton"
+           android:layout_width="match_parent"
+           android:layout_height="55dp"
+           android:background="@drawable/custom_auth_button"
+           android:textColor="@color/white"
+           android:text="@string/login_label"
+           app:layout_constraintTop_toBottomOf="@id/forgotPassword"
+           android:layout_marginTop="52dp"
+           app:layout_constraintStart_toStartOf="parent" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
