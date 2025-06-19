@@ -2,6 +2,14 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="gray_text">#4B5563</color>
+    <color name="secondary">#2B3467</color>
+    <color name="gray_500">#E5E5E5</color>
+    <color name="gray_800">#9CA3AF</color>
+    <color name="gray_300">#E6E7E9</color>
+    <color name="gray">#6B7280</color>
+    <color name="light_gray">#E6E7E9</color>
+    <color name="red">#EB4646</color>
     <color name="primary">#F83758</color>
     <color name="input_color">#F3F3F3</color>
     <color name="input_stroke">#A8A8A9</color>

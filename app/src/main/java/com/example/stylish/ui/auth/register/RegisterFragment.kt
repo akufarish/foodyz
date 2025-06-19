@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.stylish.MainActivity
 import com.example.stylish.R
 import com.example.stylish.databinding.FragmentRegisterBinding
+import com.example.stylish.ui.home.HomeActivity
 
 class RegisterFragment : Fragment() {
 
@@ -33,7 +34,7 @@ class RegisterFragment : Fragment() {
         super.onStart()
         binding.loginButton.setOnClickListener {
             startActivity(
-                Intent(requireContext(), MainActivity::class.java)
+                Intent(requireContext(), HomeActivity::class.java)
             )
         }
     }

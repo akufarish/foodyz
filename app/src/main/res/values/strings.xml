@@ -19,4 +19,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="today_new_arrivable">Promo Hari Ini</string>
+    <string name="best_of_the_today_food_list_update">Promo makanan cuma hari ini</string>
+    <string name="current_location_string">Agrabad 435, Chittagong</string>
+    <string name="lokasi_item">Banjarmasin</string>
+    <string name="nama_makanan">Nasi Goreng</string>
 </resources>
