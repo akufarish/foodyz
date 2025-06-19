@@ -19,6 +19,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.stylish.R
 import com.example.stylish.adapter.AuthAdapter
+import com.example.stylish.adapter.CurrentOrderAdapter
 import com.example.stylish.databinding.ActivityOsmBinding
 import com.example.stylish.databinding.BottomSheetBinding
 import com.google.android.gms.common.api.ResolvableApiException
@@ -101,7 +102,7 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         val sheetBinding = BottomSheetBinding.bind(bottomSheet)
         val behavior = BottomSheetBehavior.from(bottomSheet)
 
-        val authAdapter = AuthAdapter(supportFragmentManager, lifecycle)
+        val authAdapter = CurrentOrderAdapter(supportFragmentManager, lifecycle)
         sheetBinding.authViewPager.adapter = authAdapter
 
         TabLayoutMediator(
@@ -109,13 +110,13 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
             sheetBinding.authViewPager
         ) { tab, position ->
             tab.text = when (position) {
-                0 -> getString(R.string.register)
-                1 -> getString(R.string.login)
+                0 -> getString(R.string.merchant_name)
+                1 -> getString(R.string.driver_name)
                 else -> ""
             }
         }.attach()
 
-        behavior.peekHeight = 500
+        behavior.peekHeight = 800
         behavior.isHideable = false
         behavior.state = BottomSheetBehavior.STATE_COLLAPSED
     }

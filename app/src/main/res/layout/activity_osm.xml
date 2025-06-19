@@ -13,7 +13,7 @@
         android:id="@+id/osmMapView" />
 
     <include
-        layout="@layout/bottom_sheet"
+        layout="@layout/bottom_sheet_orderan"
         android:id="@+id/bottomSheetContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
