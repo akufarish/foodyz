@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Stylish"
         tools:targetApi="31">
         <activity
+            android:name=".ui.home.activity.DetailMakananActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false" />
         <!-- <activity -->
@@ -45,7 +48,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name=".ui.osm.OsmActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

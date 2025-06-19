@@ -1,5 +1,6 @@
 package com.example.stylish.ui.home.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.example.stylish.adapter.PopularFoodAdapter
 import com.example.stylish.databinding.FragmentHomeBinding
 import com.example.stylish.models.Carousel
 import com.example.stylish.models.Food
+import com.example.stylish.ui.home.activity.DetailMakananActivity
 
 class HomeFragment : Fragment() {
 
@@ -77,6 +79,9 @@ class HomeFragment : Fragment() {
 
         val foodAdapter: FoodAdapter = FoodAdapter(foodItem, requireContext(), object : FoodAdapter.OnAdepterListener {
             override fun onClick(result: Food) {
+                startActivity(
+                    Intent(requireContext(), DetailMakananActivity::class.java)
+                )
                 Log.d("home fragment", "Text :")
             }
         })

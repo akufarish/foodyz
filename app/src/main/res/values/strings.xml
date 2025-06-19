@@ -24,4 +24,10 @@
     <string name="current_location_string">Agrabad 435, Chittagong</string>
     <string name="lokasi_item">Banjarmasin</string>
     <string name="nama_makanan">Nasi Goreng</string>
+    <string name="profile_username">John Doe</string>
+    <string name="profile_email">john@gmail.com</string>
+    <string name="account_setting">Account Settings</string>
+    <string name="language">Feedback</string>
+    <string name="new_version">New Version</string>
+    <string name="logout">Logout</string>
 </resources>
