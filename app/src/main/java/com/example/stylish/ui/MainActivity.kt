@@ -1,13 +1,16 @@
-package com.example.stylish
+package com.example.stylish.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.stylish.R
 import com.example.stylish.adapter.PromoCarouselAdapter
 import com.example.stylish.adapter.TypeAdapter
 import com.example.stylish.databinding.ActivityMainBinding
 import com.example.stylish.models.PromoCarousel
 import com.example.stylish.models.Type
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding

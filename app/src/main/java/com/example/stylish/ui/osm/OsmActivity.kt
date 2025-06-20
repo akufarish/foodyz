@@ -35,6 +35,7 @@ import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import org.osmdroid.api.IMapController
 import org.osmdroid.config.Configuration
 import org.osmdroid.events.MapListener
@@ -49,6 +50,7 @@ import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import java.util.Locale
 
+@AndroidEntryPoint
 class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
 
     private var _binding: ActivityOsmBinding? = null

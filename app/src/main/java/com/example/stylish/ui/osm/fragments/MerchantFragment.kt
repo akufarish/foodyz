@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.stylish.R
 import com.example.stylish.databinding.FragmentMerchantBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MerchantFragment : Fragment() {
 
     private var _binding: FragmentMerchantBinding? = null

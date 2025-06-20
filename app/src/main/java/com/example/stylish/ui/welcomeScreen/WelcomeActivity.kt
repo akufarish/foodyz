@@ -4,10 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.example.stylish.MainActivity
-import com.example.stylish.R
+import com.example.stylish.ui.MainActivity
 import com.example.stylish.databinding.ActivityWelcomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WelcomeActivity : AppCompatActivity() {
     private var _binding: ActivityWelcomeBinding? = null
     private val binding get() = _binding

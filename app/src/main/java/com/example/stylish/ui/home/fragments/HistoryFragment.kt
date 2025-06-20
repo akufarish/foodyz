@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.stylish.R
 import com.example.stylish.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HistoryFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null

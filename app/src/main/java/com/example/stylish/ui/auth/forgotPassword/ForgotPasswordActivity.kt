@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.stylish.R
 import com.example.stylish.databinding.ActivityForgotPasswordBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ForgotPasswordActivity : AppCompatActivity() {
     private var _binding: ActivityForgotPasswordBinding? = null
     private val binding get() = _binding

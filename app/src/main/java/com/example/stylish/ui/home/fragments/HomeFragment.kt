@@ -16,7 +16,9 @@ import com.example.stylish.databinding.FragmentHomeBinding
 import com.example.stylish.models.Carousel
 import com.example.stylish.models.Food
 import com.example.stylish.ui.home.activity.DetailMakananActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null

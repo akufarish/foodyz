@@ -12,7 +12,9 @@ import com.example.stylish.adapter.FoodAdapter
 import com.example.stylish.databinding.ActivityDetailMakananBinding
 import com.example.stylish.models.Food
 import com.example.stylish.ui.osm.OsmActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailMakananActivity : AppCompatActivity() {
     private var _binding: ActivityDetailMakananBinding? = null
     private val binding get() = _binding

@@ -11,7 +11,9 @@ import com.example.stylish.databinding.ActivityAuthBinding
 import com.example.stylish.databinding.BottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
 
     private var _binding: ActivityAuthBinding? = null

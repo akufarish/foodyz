@@ -10,8 +10,9 @@ import com.example.stylish.adapter.SplashAdapter
 import com.example.stylish.databinding.ActivityOnBoardBinding
 import com.example.stylish.models.Splash
 import com.example.stylish.ui.auth.AuthActivity
-import com.example.stylish.ui.auth.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnBoardActivity : AppCompatActivity() {
     private var _binding: ActivityOnBoardBinding? = null
     private val binding get() = _binding

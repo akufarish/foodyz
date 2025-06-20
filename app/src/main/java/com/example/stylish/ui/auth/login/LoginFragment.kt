@@ -6,15 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.stylish.MainActivity
-import com.example.stylish.R
+import androidx.fragment.app.viewModels
 import com.example.stylish.databinding.FragmentLoginBinding
 import com.example.stylish.ui.home.HomeActivity
+import dagger.hilt.android.AndroidEntryPoint
+import androidx.activity.viewModels
+import com.example.stylish.viewmodel.AuthViewModel
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private val authViewBinding: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

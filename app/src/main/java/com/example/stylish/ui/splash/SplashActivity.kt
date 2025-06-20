@@ -8,7 +8,9 @@ import android.os.Looper
 import android.view.WindowManager
 import com.example.stylish.databinding.ActivitySplashBinding
 import com.example.stylish.ui.onboard.OnBoardActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
     private var _binding: ActivitySplashBinding? = null
     private val binding get() = _binding

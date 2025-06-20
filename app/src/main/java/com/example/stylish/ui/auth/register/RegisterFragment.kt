@@ -6,15 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.stylish.MainActivity
-import com.example.stylish.R
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import com.example.stylish.data.model.RegisterRequest
 import com.example.stylish.databinding.FragmentRegisterBinding
 import com.example.stylish.ui.home.HomeActivity
+import com.example.stylish.viewmodel.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,12 +35,25 @@ class RegisterFragment : Fragment() {
         return binding.root
     }
 
+    private fun register() {
+        binding.loginButton.setOnClickListener {
+            val email = binding.emailEditText.text.toString()
+            val username = binding.usernameEmailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            val phone = binding.phoneEditText.text.toString()
+            val payload = RegisterRequest(email, username, password, phone)
+            authViewModel.register(email, password, username, phone, onSuccess = {
+                responses ->
+                Toast.makeText(requireContext(), "Register berhasil", Toast.LENGTH_SHORT).show()
+            }, onError = {
+                responses ->
+                Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show()
+            })
+        }
+    }
+
     override fun onStart() {
         super.onStart()
-        binding.loginButton.setOnClickListener {
-            startActivity(
-                Intent(requireContext(), HomeActivity::class.java)
-            )
-        }
+        register()
     }
 }

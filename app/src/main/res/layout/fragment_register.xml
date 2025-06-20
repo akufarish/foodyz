@@ -26,6 +26,7 @@
             android:id="@+id/usernameEmailEditText" />
 
         <EditText
+            android:autofillHints=""
             android:textColorHint="@color/black"
             android:textColor="@color/black"
             android:hint="Email"
@@ -37,7 +38,22 @@
             android:layout_marginTop="36dp"
             android:inputType="text"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/emailEditText" />
+            android:id="@+id/emailEditText"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:hint="Phone"
+            android:paddingHorizontal="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/custom_auth_input"
+            app:layout_constraintTop_toBottomOf="@id/emailEditText"
+            android:layout_marginTop="36dp"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/phoneEditText" />
 
         <EditText
             android:textColorHint="@color/black"
@@ -47,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@drawable/custom_auth_input"
-            app:layout_constraintTop_toBottomOf="@id/emailEditText"
+            app:layout_constraintTop_toBottomOf="@id/phoneEditText"
             android:layout_marginTop="31dp"
             android:inputType="textPassword"
             app:layout_constraintStart_toStartOf="parent"
