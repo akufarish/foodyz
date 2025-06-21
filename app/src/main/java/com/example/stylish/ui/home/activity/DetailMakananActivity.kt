@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.stylish.R
 import com.example.stylish.adapter.FoodAdapter
+import com.example.stylish.data.model.Menu
 import com.example.stylish.databinding.ActivityDetailMakananBinding
 import com.example.stylish.models.Food
 import com.example.stylish.ui.osm.OsmActivity
@@ -18,23 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailMakananActivity : AppCompatActivity() {
     private var _binding: ActivityDetailMakananBinding? = null
     private val binding get() = _binding
-
-    private val foodImage = arrayListOf<Int>(
-        R.drawable.food1,
-        R.drawable.food1,
-        R.drawable.food1,
-    )
-    private val foodTitle = arrayListOf<String>(
-        "Nasi Goreng",
-        "Nasi Goreng",
-        "Nasi Goreng",
-    )
-
-    private val foodLocation = arrayListOf<String>(
-        "Indonesia",
-        "Indonesia",
-        "Indonesia",
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,32 +31,21 @@ class DetailMakananActivity : AppCompatActivity() {
             insets
         }
 
-        val foodItem = arrayListOf<Food>()
-        for (i in foodImage.indices) {
-            val food = Food(
-                image = foodImage[i],
-                title = foodTitle[i],
-                location = foodLocation[i]
-            )
-            foodItem.add(food)
-        }
-        val foodAdapter: FoodAdapter = FoodAdapter(foodItem, this@DetailMakananActivity, object : FoodAdapter.OnAdepterListener {
-            override fun onClick(result: Food) {
-                startActivity(
-                    Intent(this@DetailMakananActivity, DetailMakananActivity::class.java)
-                )
-                Log.d("home fragment", "Text :")
-            }
-        })
+        setData()
+    }
 
-        binding?.hotelRecyclerView?.apply {
-            adapter = foodAdapter
-        }
+    fun setData() {
+        val menu = intent.getParcelableExtra<Menu>("menu")
+        Log.d("data_detail_menu", menu.toString())
 
-        binding?.keranjangButton?.setOnClickListener {
-            startActivity(
-                Intent(this@DetailMakananActivity, OsmActivity::class.java)
-            )
+        menu.let {
+            binding?.foodTitle?.text = menu?.name
+            binding?.foodLocation?.text = menu?.merchants?.address
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

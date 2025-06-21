@@ -21,5 +21,20 @@ class SharedPrefHelper @Inject constructor(context : Context)  {
     fun saveRole(role: String) {
         sharedPref.edit().putString("role", role).apply()
     }
+    fun setLocation(location: String) {
+        sharedPref.edit().putString("currentLocation", location).apply()
+    }
+
+    fun getLocation(): String? {
+        return sharedPref.getString("currentLocation", null)
+    }
+
+    fun setKota(kota: String) {
+        sharedPref.edit().putString("kota", kota).apply()
+    }
+
+    fun getKota(): String? {
+        return sharedPref.getString("kota", null)
+    }
 
 }

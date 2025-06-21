@@ -183,8 +183,6 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
     }
 
     private fun getLocationAndProceed() {
-
-
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED

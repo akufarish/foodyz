@@ -39,7 +39,7 @@
                     <TextView
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:id="@+id/hotelTitle"
+                        android:id="@+id/foodTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
@@ -51,12 +51,13 @@
                         app:layout_constraintStart_toStartOf="parent"
                         android:id="@+id/locationIcon"
                         android:layout_marginTop="5dp"
-                        app:layout_constraintTop_toBottomOf="@+id/hotelTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/foodTitle"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:src="@drawable/ic_location" />
 
                     <TextView
+                        android:id="@+id/foodLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -65,13 +66,13 @@
                         android:textColor="@color/gray"
                         android:textSize="12sp"
                         app:layout_constraintStart_toEndOf="@+id/locationIcon"
-                        app:layout_constraintTop_toBottomOf="@+id/hotelTitle" />
+                        app:layout_constraintTop_toBottomOf="@+id/foodTitle" />
 
                     <com.google.android.material.imageview.ShapeableImageView
                         app:shapeAppearanceOverlay="@style/roundedImage"
                         android:id="@+id/hotelImage"
                         android:layout_marginTop="34dp"
-                        app:layout_constraintTop_toBottomOf="@+id/hotelTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/foodTitle"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="0dp"

@@ -53,6 +53,21 @@ class MenuViewModel @Inject constructor(private val menuRepository: MenuReposito
         }
     }
 
+    fun getRandMenu(onSuccess: (MenuResponses) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = menuRepository.getRandMenu()
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                _menu.value = result.getOrNull()!!
+                Log.d("menuViewModel", "Register success: ${result.getOrNull()}")
+                Log.d("menuViewModel", "Register success: ${menu.value}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("RegisterViewModel", "Register success: ${result.getOrNull()}")
+            }
+        }
+    }
+
     interface onMenuClickListener {
         fun onDetailClick(menu: Menu)
     }

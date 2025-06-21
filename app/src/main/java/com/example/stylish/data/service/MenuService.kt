@@ -15,4 +15,7 @@ interface MenuService {
 
     @GET("menus")
     suspend fun getMenu(): Response<MenuResponses>
+
+    @GET("rand-menu")
+    suspend fun getRandMenu(): Response<MenuResponses>
 }
