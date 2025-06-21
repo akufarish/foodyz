@@ -3,6 +3,7 @@ package com.example.stylish.utils.di
 import android.app.Application
 import android.content.Context
 import com.example.stylish.data.service.AuthService
+import com.example.stylish.data.service.MenuService
 import com.example.stylish.utils.AuthInterceptor
 import dagger.Module
 import dagger.Provides
@@ -64,6 +65,12 @@ object NetworkModule {
     @Singleton
     fun provideAuthApiService(retrofit: Retrofit) : AuthService {
         return retrofit.create(AuthService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMenuApiService(retrofit: Retrofit) : MenuService {
+        return retrofit.create(MenuService::class.java)
     }
 
     @Provides

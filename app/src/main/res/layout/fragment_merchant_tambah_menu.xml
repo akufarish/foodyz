@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.merchant.fragment.MerchantTambahMenuFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:hint="Menu"
+            android:paddingHorizontal="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/custom_auth_input"
+            app:layout_constraintTop_toBottomOf="@id/welcomeBackLabel"
+            android:layout_marginTop="36dp"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/menuEditText" />
+
+        <EditText
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:hint="Price"
+            android:paddingHorizontal="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/custom_auth_input"
+            app:layout_constraintTop_toBottomOf="@id/menuEditText"
+            android:layout_marginTop="36dp"
+            android:inputType="text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/priceEditText" />
+
+        <Button
+            android:id="@+id/tambahButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/custom_auth_button"
+            android:textColor="@color/white"
+            android:text="Tambah"
+            app:layout_constraintTop_toBottomOf="@id/priceEditText"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

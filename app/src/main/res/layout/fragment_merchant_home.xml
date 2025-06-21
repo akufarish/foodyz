@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.merchant.fragment.MerchantHomeFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:paddingHorizontal="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginHorizontal="12dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/homeHeaderLayout"
+                android:layout_width="match_parent"
+                android:layout_height="70dp" >
+
+                <ImageView
+                    android:id="@+id/locationIcon"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_location"
+                    app:layout_constraintStart_toEndOf="@+id/hamburgerButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="50dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/current_location_string"
+                    app:layout_constraintStart_toEndOf="@+id/locationIcon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginStart="12dp"/>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    app:shapeAppearanceOverlay="@style/roundedImage"
+                    android:src="@drawable/ado"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                app:layout_constraintTop_toBottomOf="@+id/homeHeaderLayout"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:id="@+id/searchEditText"
+                    android:inputType="text"
+                    android:hint="Search"
+                    android:textColorHint="@color/gray_800"
+                    android:paddingStart="12dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/search_input"
+                    android:layout_width="280dp"
+                    android:layout_height="46dp" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/homeCarousel"
+                    app:layout_constraintTop_toBottomOf="@+id/searchEditText"
+                    android:layout_marginTop="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp" />
+
+                <com.tbuonomo.viewpagerdotsindicator.WormDotsIndicator
+                    android:id="@+id/home_dot_indicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:dotsColor="@color/primary"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="14dp"
+                    app:dotsSpacing="4dp"
+                    app:dotsStrokeColor="@color/primary"
+                    app:dotsStrokeWidth="2dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="18dp"
+                    app:layout_constraintTop_toBottomOf="@id/homeCarousel"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/bookingLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="38dp"
+                    app:layout_constraintTop_toBottomOf="@+id/home_dot_indicator"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginTop="43dp">
+
+                    <TextView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="@string/today_new_arrivable"
+                        android:id="@+id/bookingTitle" />
+
+                    <TextView
+                        app:layout_constraintTop_toBottomOf="@+id/bookingTitle"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:text="@string/best_of_the_today_food_list_update"
+                        android:id="@+id/bookingDDescription" />
+
+                    <ImageButton
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:src="@drawable/ic_right_arrow"
+                        android:scaleType="fitCenter"
+                        android:backgroundTint="@android:color/transparent"
+                        android:padding="18dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/bookingLayout"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:id="@+id/hotelRecyclerView"
+                    tools:listitem="@layout/hotel_item"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>
