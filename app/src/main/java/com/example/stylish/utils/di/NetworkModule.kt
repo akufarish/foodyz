@@ -18,7 +18,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    var BASE_URL = "https://e9b9-180-248-134-103.ngrok-free.app/"
+    var BASE_URL = "https://cbed-180-248-134-103.ngrok-free.app/"
 
     @Provides
     @Singleton

@@ -109,7 +109,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="@string/today_new_arrivable"
+                        android:text="Menu Hari ini"
                         android:id="@+id/bookingTitle" />
 
                     <TextView
@@ -118,10 +118,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/gray"
-                        android:text="@string/best_of_the_today_food_list_update"
+                        android:text="Menu terbaik hari ini"
                         android:id="@+id/bookingDDescription" />
 
                     <ImageButton
+                        android:id="@+id/seeAllImageButton"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +144,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@+id/bookingLayout"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    android:id="@+id/hotelRecyclerView"
+                    android:id="@+id/makananRecyclerView"
                     tools:listitem="@layout/hotel_item"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

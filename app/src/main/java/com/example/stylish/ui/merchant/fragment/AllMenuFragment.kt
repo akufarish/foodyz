@@ -1,6 +1,5 @@
 package com.example.stylish.ui.merchant.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,19 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.stylish.R
 import com.example.stylish.adapter.MenuAdapter
 import com.example.stylish.data.model.Menu
-import com.example.stylish.databinding.FragmentMerchantHomeBinding
-import com.example.stylish.ui.home.activity.DetailMakananActivity
+import com.example.stylish.databinding.FragmentAllMenuBinding
 import com.example.stylish.viewmodel.merchant.MenuViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MerchantHomeFragment : Fragment(), MenuViewModel.onMenuClickListener {
-
-    private var _binding: FragmentMerchantHomeBinding? = null
+class AllMenuFragment : Fragment(), MenuViewModel.onMenuClickListener {
+    private var _binding: FragmentAllMenuBinding? = null
     private val binding get() = _binding!!
     private val menuViewModel: MenuViewModel by viewModels()
     private lateinit var menuAdapter: MenuAdapter
@@ -35,7 +31,7 @@ class MerchantHomeFragment : Fragment(), MenuViewModel.onMenuClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMerchantHomeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentAllMenuBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
@@ -51,14 +47,6 @@ class MerchantHomeFragment : Fragment(), MenuViewModel.onMenuClickListener {
         menuViewModel.menu.observe(this) {response ->
             menuAdapter.setData(response.data)
         }
-        binding.seeAllImageButton.setOnClickListener {
-            findNavController().navigate(R.id.allMenuFragment)
-        }
-    }
-
-    private fun setupRv() {
-        menuAdapter = MenuAdapter(this)
-        binding.makananRecyclerView.adapter = menuAdapter
     }
 
     private fun getMenu() {
@@ -69,11 +57,12 @@ class MerchantHomeFragment : Fragment(), MenuViewModel.onMenuClickListener {
         })
     }
 
-    override fun onDetailClick(menu: Menu) {
-        val intent = Intent(requireContext(), DetailMakananActivity::class.java)
-        intent.putExtra("id", menu.id)
-        startActivity(intent)
+    private fun setupRv() {
+        menuAdapter = MenuAdapter(this)
+        binding.makananRecyclerView.adapter = menuAdapter
     }
 
-
+    override fun onDetailClick(menu: Menu) {
+        TODO("Not yet implemented")
+    }
 }
