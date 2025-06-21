@@ -205,6 +205,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
+                android:id="@+id/logoutButton"
                 android:layout_width="111dp"
                 android:layout_height="35dp"
                 android:background="@drawable/auth_button"

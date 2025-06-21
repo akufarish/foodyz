@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stylish.data.model.LoginRequest
 import com.example.stylish.data.model.LoginResposnes
+import com.example.stylish.data.model.LogoutResposne
 import com.example.stylish.data.model.RegisterRequest
 import com.example.stylish.data.model.RegisterResposnes
 import com.example.stylish.data.repository.AuthRepository
@@ -48,6 +49,21 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
                 sharedPrefHelper.saveToken(token.toString())
                 onSuccess(result.getOrNull()!!)
                 Log.d("RegisterViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("RegisterViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+
+    fun logout(onSuccess: (LogoutResposne) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = authRepository.logout()
+
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                sharedPrefHelper.removeToken()
+                Log.d("RegisterViewModel", "Logout success: ${result.getOrNull()}")
             } else {
                 onError(result.exceptionOrNull()?.message ?: "Unknown error")
                 Log.d("RegisterViewModel", "Register error ${result.exceptionOrNull()?.message}")

@@ -27,3 +27,9 @@ data class LoginResposnes(
     val token: String
 )
 
+data class LogoutResposne(
+    val status: String,
+    val message: String,
+    val errors: String,
+    val content: String
+)

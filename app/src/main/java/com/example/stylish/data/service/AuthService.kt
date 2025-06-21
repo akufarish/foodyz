@@ -2,10 +2,12 @@ package com.example.stylish.data.service
 
 import com.example.stylish.data.model.LoginRequest
 import com.example.stylish.data.model.LoginResposnes
+import com.example.stylish.data.model.LogoutResposne
 import com.example.stylish.data.model.RegisterRequest
 import com.example.stylish.data.model.RegisterResposnes
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface AuthService {
@@ -18,4 +20,7 @@ interface AuthService {
     suspend fun login(
         @Body request: LoginRequest
     ): Response<LoginResposnes>
+
+    @GET("logout")
+    suspend fun logout(): Response<LogoutResposne>
 }
