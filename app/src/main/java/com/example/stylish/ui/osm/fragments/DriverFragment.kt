@@ -28,4 +28,9 @@ class DriverFragment : Fragment() {
         _binding = FragmentDriverBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

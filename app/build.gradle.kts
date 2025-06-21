@@ -39,12 +39,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
 }
 
 dependencies {
 
     implementation("androidx.core:core-ktx:1.16.0")
-    implementation("org.osmdroid:osmdroid-android:6.1.20")
+    implementation("org.osmdroid:osmdroid-android:6.1.16")
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("androidx.appcompat:appcompat:1.7.1")
     implementation("com.google.android.material:material:1.12.0")
@@ -74,5 +75,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.21")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.21")
     implementation("androidx.work:work-runtime:2.7.0-alpha05")
+
+    implementation("com.github.MKergall:osmbonuspack:6.9.0")
 
 }

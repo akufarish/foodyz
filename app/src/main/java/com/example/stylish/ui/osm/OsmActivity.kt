@@ -49,6 +49,9 @@ import org.osmdroid.views.overlay.Marker
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 import java.util.Locale
+import org.osmdroid.bonuspack.routing.OSRMRoadManager
+import org.osmdroid.bonuspack.routing.Road
+import org.osmdroid.bonuspack.routing.RoadManager
 
 @AndroidEntryPoint
 class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
@@ -60,6 +63,8 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
     private var isLocationDialogShown = false
     private var isShow = false
     private lateinit var kota: String
+    private lateinit var currentLatitude: String
+    private lateinit var currentLongtitude: String
 
     private lateinit var map: MapView
     private var controller: IMapController? = null;
@@ -95,34 +100,8 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         }
 
         if(!isShow) getLocationAndProceed()
-
-        showBottomSheet()
     }
 
-    private fun showBottomSheet() {
-        val bottomSheet = findViewById<View>(R.id.bottomSheetContainer)
-        val sheetBinding = BottomSheetBinding.bind(bottomSheet)
-        val behavior = BottomSheetBehavior.from(bottomSheet)
-
-        val authAdapter = CurrentOrderAdapter(supportFragmentManager, lifecycle)
-        sheetBinding.authViewPager.adapter = authAdapter
-
-        TabLayoutMediator(
-            sheetBinding.authTabLayout,
-            sheetBinding.authViewPager
-        ) { tab, position ->
-            tab.text = when (position) {
-                0 -> getString(R.string.merchant_name)
-                1 -> getString(R.string.driver_name)
-                else -> ""
-            }
-        }.attach()
-
-        behavior.peekHeight = 800
-        behavior.isHideable = false
-        behavior.state = BottomSheetBehavior.STATE_COLLAPSED
-    }
-    
 
     private fun setUserLocation() {
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -263,11 +242,20 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
         setUserLocation()
         Log.d("cityName", addresses.toString())
+        Log.d("currentLongitude", location.longitude.toString())
+        Log.d("currentLongitude", location.latitude.toString())
+        currentLatitude = location.latitude.toString()
+        currentLongtitude = location.longitude.toString()
+        val userLocation = GeoPoint(location.latitude, location.longitude)
+        val destination = GeoPoint(-3.3318, 114.5908)
+        drawRoute(userLocation, destination)
         return if (!addresses.isNullOrEmpty()) {
             var cityName = addresses[0].subAdminArea
+            val lokasiSaatIni = addresses[0].getAddressLine(0)
             cityName = cityName?.replace("Kota ", "")?.replace("Kabupaten ", "")
             kota = cityName
             Log.d("kota", cityName)
+            Log.d("current_kota", lokasiSaatIni)
             cityName
         } else {
             null
@@ -290,4 +278,40 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
             fusedLocationClient.removeLocationUpdates(locationCallback)
         }
     }
+
+    fun drawRoute(start: GeoPoint, end: GeoPoint) {
+        val roadManager = OSRMRoadManager(this, "your_user_agent_here")
+        val waypoints = ArrayList<GeoPoint>()
+        waypoints.add(start)
+        waypoints.add(end)
+
+        Thread {
+            val road: Road = roadManager.getRoad(waypoints)
+            val roadOverlay = RoadManager.buildRoadOverlay(road)
+
+            runOnUiThread {
+                val map = binding?.osmMapView!!
+                map.overlays.add(roadOverlay)
+
+                // Optional: add markers
+                val startMarker = Marker(map).apply {
+                    position = start
+                    title = "Start"
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                }
+
+                val endMarker = Marker(map).apply {
+                    position = end
+                    title = "Destination"
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                }
+
+                map.overlays.add(startMarker)
+                map.overlays.add(endMarker)
+
+                map.invalidate()
+            }
+        }.start()
+    }
+
 }

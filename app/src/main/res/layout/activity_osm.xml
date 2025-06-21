@@ -6,8 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.osm.OsmActivity">
+
+    <AutoCompleteTextView
+        android:layout_marginHorizontal="20dp"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Location"
+        android:paddingHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/custom_auth_input"
+        app:layout_constraintTop_toBottomOf="@id/welcomeBackLabel"
+        android:layout_marginTop="36dp"
+        android:inputType="text"
+        android:translationZ="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/locationEditText" />
     
     <org.osmdroid.views.MapView
+        android:translationZ="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/osmMapView" />
