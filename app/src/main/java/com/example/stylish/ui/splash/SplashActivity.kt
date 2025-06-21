@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.viewModels
 import com.example.stylish.databinding.ActivitySplashBinding
+import com.example.stylish.ui.driver.activity.DriverHomeActivity
 import com.example.stylish.ui.home.HomeActivity
+import com.example.stylish.ui.merchant.activity.MerchantHomeActivity
 import com.example.stylish.ui.onboard.OnBoardActivity
 import com.example.stylish.viewmodel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,11 +47,32 @@ class SplashActivity : AppCompatActivity() {
                 )
             }, 2000)
         } else {
-            Handler(Looper.getMainLooper()).postDelayed({
-                startActivity(
-                    Intent(this@SplashActivity, HomeActivity::class.java)
-                )
-            }, 2000)
+           val role = authViewModel.getRole()
+            Log.d("role", role.toString());
+
+            when (role) {
+                "user" -> {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        startActivity(
+                            Intent(this@SplashActivity, HomeActivity::class.java)
+                        )
+                    }, 2000)
+                }
+                "merchant" -> {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        startActivity(
+                            Intent(this@SplashActivity, MerchantHomeActivity::class.java)
+                        )
+                    }, 2000)
+                }
+                "driver" -> {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        startActivity(
+                            Intent(this@SplashActivity, DriverHomeActivity::class.java)
+                        )
+                    }, 2000)
+                }
+            }
         }
     }
 

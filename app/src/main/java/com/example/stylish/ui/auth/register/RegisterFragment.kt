@@ -41,8 +41,10 @@ class RegisterFragment : Fragment() {
             val username = binding.usernameEmailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
             val phone = binding.phoneEditText.text.toString()
+            val merchant = binding.isMerchantCheckBox.isChecked
+            val driver = binding.isDriverCheckBox.isChecked
             val payload = RegisterRequest(email, username, password, phone)
-            authViewModel.register(email, password, username, phone, onSuccess = {
+            authViewModel.register(email, password, username, phone, merchant, driver, onSuccess = {
                 responses ->
                 Toast.makeText(requireContext(), "Register berhasil", Toast.LENGTH_SHORT).show()
             }, onError = {
@@ -55,5 +57,17 @@ class RegisterFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         register()
+        validasiCheckBox()
+    }
+
+    private fun validasiCheckBox() {
+        binding.isMerchantCheckBox.setOnCheckedChangeListener{
+                _, isChecked ->
+            binding.isDriverCheckBox.isEnabled = !isChecked
+        }
+        binding.isDriverCheckBox.setOnCheckedChangeListener{
+                _, isChecked ->
+            binding.isMerchantCheckBox.isEnabled = !isChecked
+        }
     }
 }

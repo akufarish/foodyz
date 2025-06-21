@@ -15,4 +15,11 @@ class SharedPrefHelper @Inject constructor(context : Context)  {
     fun removeToken () {
         sharedPref.edit().remove("token").apply()
     }
+    fun getRole(): String? {
+        return sharedPref.getString("role", null)
+    }
+    fun saveRole(role: String) {
+        sharedPref.edit().putString("role", role).apply()
+    }
+
 }

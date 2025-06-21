@@ -16,12 +16,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(private val authRepository: AuthRepository, private val sharedPrefHelper: SharedPrefHelper) : ViewModel() {
-    fun register(email: String, password: String, name: String, phone: String, onSuccess: (RegisterResposnes) -> Unit, onError: (String) -> Unit) {
+    fun register(email: String, password: String, name: String, phone: String, is_merchant: Boolean, is_driver: Boolean, onSuccess: (RegisterResposnes) -> Unit, onError: (String) -> Unit) {
         val payload: RegisterRequest = RegisterRequest(
             email,
             name,
             password,
-            phone
+            phone,
+            is_merchant,
+            is_driver
         )
         viewModelScope.launch {
         val result = authRepository.register(payload)
@@ -46,6 +48,8 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
             if (result.isSuccess) {
                 val token = result.getOrNull()?.token
+                val role = result.getOrNull()?.role
+                sharedPrefHelper.saveRole(role.toString())
                 sharedPrefHelper.saveToken(token.toString())
                 onSuccess(result.getOrNull()!!)
                 Log.d("RegisterViewModel", "Register success: ${result.getOrNull()}")
@@ -77,5 +81,9 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     fun checkToken(): String? {
         return sharedPrefHelper.getToken()
+    }
+
+    fun getRole() : String? {
+        return sharedPrefHelper.getRole()
     }
 }

@@ -9,6 +9,8 @@ data class RegisterRequest(
     val name: String,
     val password: String,
     val phone: String,
+    val is_merchant: Boolean = false,
+    val is_driver: Boolean = false
 )
 
 data class LoginRequest(
@@ -24,7 +26,8 @@ data class RegisterResposnes(
 data class LoginResposnes(
     val status: String,
     val message: String,
-    val token: String
+    val token: String,
+    val role: String
 )
 
 data class LogoutResposne(
