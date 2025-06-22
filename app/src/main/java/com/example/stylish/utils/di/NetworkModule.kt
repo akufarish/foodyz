@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.stylish.data.service.AuthService
 import com.example.stylish.data.service.MenuService
+import com.example.stylish.data.service.MerchantService
 import com.example.stylish.data.service.OrderService
 import com.example.stylish.utils.AuthInterceptor
 import dagger.Module
@@ -78,6 +79,12 @@ object NetworkModule {
     @Singleton
     fun provideOrderApiService(retrofit: Retrofit) : OrderService {
         return retrofit.create(OrderService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMerchantApiService(retrofit: Retrofit) : MerchantService {
+        return retrofit.create(MerchantService::class.java)
     }
 
     @Provides

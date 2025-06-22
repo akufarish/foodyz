@@ -5,6 +5,82 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="32dp"
     tools:context=".ui.merchant.activity.MakeMerchantActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_account_label"
+        android:textSize="36sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/welcomeBackLabel" />
+
+    <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Name"
+        android:paddingHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/custom_auth_input"
+        app:layout_constraintTop_toBottomOf="@id/welcomeBackLabel"
+        android:layout_marginTop="36dp"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/nameEditText" />
+
+    <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Phone"
+        android:paddingHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/custom_auth_input"
+        app:layout_constraintTop_toBottomOf="@id/nameEditText"
+        android:layout_marginTop="31dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/phoneEditText" />
+
+    <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Address"
+        android:paddingHorizontal="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/custom_auth_input"
+        app:layout_constraintTop_toBottomOf="@id/phoneEditText"
+        android:layout_marginTop="31dp"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/adressEditText" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_desc"
+        android:textColor="#676767"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/adressEditText"
+        android:layout_marginTop="19dp" />
+
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/custom_auth_button"
+        android:textColor="@color/white"
+        android:text="@string/register_label"
+        app:layout_constraintTop_toBottomOf="@id/forgotPassword"
+        android:layout_marginTop="38dp"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

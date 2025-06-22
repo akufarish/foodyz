@@ -12,3 +12,15 @@ data class Merchant(
     val phone: String,
     val status: String
 ): Parcelable
+
+data class CreateMerchantRequest(
+    val name: String,
+    val address: String,
+    val phone: String,
+    val latitude: Double,
+    val longtitude: Double,
+)
+
+data class CreateMerchantResposne(
+    val data: Merchant
+)

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/auth_padding"
-    tools:context=".ui.auth.register.RegisterActivity">
+    tools:context=".ui.merchant.activity.MakeMerchantActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -21,7 +21,7 @@
     <EditText
         android:textColorHint="@color/black"
         android:textColor="@color/black"
-        android:hint="Username or email"
+        android:hint="Name"
         android:paddingHorizontal="12dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -30,35 +30,34 @@
         android:layout_marginTop="36dp"
         android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/emailEditText" />
+        android:id="@+id/nameEditText" />
 
     <EditText
         android:textColorHint="@color/black"
         android:textColor="@color/black"
-        android:hint="Password"
+        android:hint="Phone"
         android:paddingHorizontal="12dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/custom_auth_input"
-        app:layout_constraintTop_toBottomOf="@id/emailEditText"
+        app:layout_constraintTop_toBottomOf="@id/nameEditText"
         android:layout_marginTop="31dp"
-        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/passwordEditText" />
+        android:id="@+id/phoneEditText" />
 
     <EditText
         android:textColorHint="@color/black"
         android:textColor="@color/black"
-        android:hint="Confirm Password"
+        android:hint="Address"
         android:paddingHorizontal="12dp"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="@drawable/custom_auth_input"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        app:layout_constraintTop_toBottomOf="@id/phoneEditText"
         android:layout_marginTop="31dp"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/confirmPasswordEditText" />
+        android:id="@+id/adressEditText" />
 
     <TextView
         android:id="@+id/forgotPassword"
@@ -68,7 +67,7 @@
         android:textColor="#676767"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirmPasswordEditText"
+        app:layout_constraintTop_toBottomOf="@id/adressEditText"
         android:layout_marginTop="19dp" />
 
 
@@ -82,33 +81,5 @@
         app:layout_constraintTop_toBottomOf="@id/forgotPassword"
         android:layout_marginTop="38dp"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:layout_marginEnd="50dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/createAccount"
-        android:textColor="@color/input_stroke"
-        android:text="@string/already_have_label"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/registerButton"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="134dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/login"
-        android:textColor="@color/primary"
-        android:text="@string/login_label"
-        android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@id/registerButton"
-        app:layout_constraintStart_toEndOf="@id/createAccount"
-        android:layout_marginTop="134dp"
-        android:layout_marginStart="5dp"
-        android:gravity="center"
-        android:textStyle="bold" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

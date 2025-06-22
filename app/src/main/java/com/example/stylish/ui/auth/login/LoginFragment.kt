@@ -14,6 +14,7 @@ import com.example.stylish.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
 import com.example.stylish.ui.driver.activity.DriverHomeActivity
+import com.example.stylish.ui.merchant.activity.MakeMerchantActivity
 import com.example.stylish.ui.merchant.activity.MerchantHomeActivity
 import com.example.stylish.viewmodel.AuthViewModel
 
@@ -50,10 +51,17 @@ class LoginFragment : Fragment() {
             authViewModel.login(email, password, onSuccess = {
                 response ->
                 Log.d("login_role", response.role.toString())
+                Log.d("login_role", response.merchant.toString())
                 if (response.role == "merchant") {
-                    startActivity(
-                        Intent(requireContext(),  MerchantHomeActivity::class.java)
-                    )
+                    if (response.merchant != null) {
+                        startActivity(
+                            Intent(requireContext(),  MerchantHomeActivity::class.java)
+                        )
+                    } else {
+                        startActivity(
+                            Intent(requireContext(),  MakeMerchantActivity::class.java)
+                        )
+                    }
                 } else if (response.role == "driver") {
                     startActivity(
                         Intent(requireContext(),  DriverHomeActivity::class.java)

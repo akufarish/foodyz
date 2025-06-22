@@ -7,9 +7,9 @@
     <string name="login_label">Login</string>
     <string name="sign_up_label">Sign Up</string>
     <string name="create_an_account_label">Create An Account</string>
-    <string name="create_account_label">Create an\naccount</string>
+    <string name="create_account_label">Create an\nMerchant Account</string>
     <string name="register_desc">By clicking the Register button, you agree\nto the public offer?</string>
-    <string name="register_label">Create Account</string>
+    <string name="register_label">Create Merchant</string>
     <string name="already_have_label">I Already Have an Account</string>
     <string name="forgot_password_label">Forgot\npassword?</string>
     <string name="submit_label">Submit</string>

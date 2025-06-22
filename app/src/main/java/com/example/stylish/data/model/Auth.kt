@@ -27,7 +27,8 @@ data class LoginResposnes(
     val status: String,
     val message: String,
     val token: String,
-    val role: String
+    val role: String,
+    val merchant: Merchant?
 )
 
 data class LogoutResposne(
