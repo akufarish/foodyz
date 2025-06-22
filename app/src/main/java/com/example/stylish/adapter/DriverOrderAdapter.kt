@@ -23,7 +23,7 @@ class DriverOrderAdapter @Inject constructor(
 
     inner class ViewHolder(val binding: HotelItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Order) {
-            binding.hotelTitle.text = data.merchant.name
+            binding.hotelTitle.text = data.merchant?.name
             binding.foodLocation.text = data.location
             binding.bookingButton.text = data.status
 

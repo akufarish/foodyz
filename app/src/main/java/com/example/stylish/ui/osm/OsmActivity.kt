@@ -23,6 +23,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.stylish.R
 import com.example.stylish.adapter.AuthAdapter
 import com.example.stylish.adapter.CurrentOrderAdapter
+import com.example.stylish.data.model.Order
 import com.example.stylish.databinding.ActivityOsmBinding
 import com.example.stylish.databinding.BottomSheetBinding
 import com.google.android.gms.common.api.ResolvableApiException
@@ -68,6 +69,7 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
     private lateinit var kota: String
     private lateinit var currentLatitude: String
     private lateinit var currentLongtitude: String
+    private lateinit var orderData: Order
 
     private lateinit var map: MapView
     private var controller: IMapController? = null;
@@ -85,6 +87,10 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
             getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
         )
         val map = binding?.osmMapView!!
+        orderData = intent.getParcelableExtra<Order>("order")!!
+
+        Log.d("data_order", orderData.toString())
+        Log.d("data_order_merchant", orderData.merchant.toString())
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
@@ -105,6 +111,31 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         if(!isShow) getLocationAndProceed()
 
         setupSearchLocation()
+        showBottomSheet()
+    }
+
+    private fun showBottomSheet() {
+        val bottomSheet = findViewById<View>(R.id.bottomSheetContainer)
+        val sheetBinding = BottomSheetBinding.bind(bottomSheet)
+        val behavior = BottomSheetBehavior.from(bottomSheet)
+
+        val authAdapter = CurrentOrderAdapter(supportFragmentManager, lifecycle, orderData)
+        sheetBinding.authViewPager.adapter = authAdapter
+
+        TabLayoutMediator(
+            sheetBinding.authTabLayout,
+            sheetBinding.authViewPager
+        ) { tab, position ->
+            tab.text = when (position) {
+                0 -> getString(R.string.merchant_name)
+                1 -> getString(R.string.driver_name)
+                else -> ""
+            }
+        }.attach()
+
+        behavior.peekHeight = 500
+        behavior.isHideable = false
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
 
@@ -252,7 +283,7 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         currentLatitude = location.latitude.toString()
         currentLongtitude = location.longitude.toString()
         val userLocation = GeoPoint(location.latitude, location.longitude)
-        val destination = GeoPoint(-3.3318, 114.5908)
+        val destination = GeoPoint(orderData.merchant?.latitude!!, orderData.merchant?.longtitude!!)
         drawRoute(userLocation, destination)
         return if (!addresses.isNullOrEmpty()) {
             var cityName = addresses[0].subAdminArea

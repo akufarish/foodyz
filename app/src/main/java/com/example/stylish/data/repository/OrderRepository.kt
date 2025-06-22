@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.stylish.data.model.DriverGetOrderRequest
 import com.example.stylish.data.model.Order
 import com.example.stylish.data.model.OrderRequest
+import com.example.stylish.data.model.UpdateStatusOrder
 import com.example.stylish.data.service.OrderService
 import org.json.JSONObject
 import java.io.IOException
@@ -31,9 +32,31 @@ class OrderRepository @Inject constructor(private val orderService: OrderService
         }
     }
 
+
     suspend fun driverTakeOrder(id: Int): Result<Order> {
         return try {
             val response = orderService.driverTakeOrder(id)
+            Log.d("response_body", response.errorBody().toString())
+            Log.d("response_body", response.body().toString())
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("Response body is null"))
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = parseErrorMessage(errorBody)
+                Result.failure(Exception(errorMessage))
+            }
+        } catch (e: IOException) {
+            Result.failure(Exception("Tidak ada Internet"))
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun updateStatusOrder(id: Int, payload: UpdateStatusOrder): Result<Order> {
+        return try {
+            val response = orderService.updateStatusOrder(id, payload)
             Log.d("response_body", response.errorBody().toString())
             Log.d("response_body", response.body().toString())
             if (response.isSuccessful) {
@@ -76,6 +99,48 @@ class OrderRepository @Inject constructor(private val orderService: OrderService
     suspend fun getAuthUserOrder(): Result<List<Order>> {
         return try {
             val response = orderService.getAuthUserOrder()
+            Log.d("response_body", response.errorBody().toString())
+            Log.d("response_body", response.body().toString())
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("Response body is null"))
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = parseErrorMessage(errorBody)
+                Result.failure(Exception(errorMessage))
+            }
+        } catch (e: IOException) {
+            Result.failure(Exception("Tidak ada Internet"))
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getDriverHistory(): Result<List<Order>> {
+        return try {
+            val response = orderService.getDriverHistory()
+            Log.d("response_body", response.errorBody().toString())
+            Log.d("response_body", response.body().toString())
+            if (response.isSuccessful) {
+                response.body()?.let {
+                    Result.success(it)
+                } ?: Result.failure(Exception("Response body is null"))
+            } else {
+                val errorBody = response.errorBody()?.string()
+                val errorMessage = parseErrorMessage(errorBody)
+                Result.failure(Exception(errorMessage))
+            }
+        } catch (e: IOException) {
+            Result.failure(Exception("Tidak ada Internet"))
+        } catch (e: Exception) {
+            Result.failure(e)
+        }
+    }
+
+    suspend fun getMerchantHistory(): Result<List<Order>> {
+        return try {
+            val response = orderService.getDriverHistory()
             Log.d("response_body", response.errorBody().toString())
             Log.d("response_body", response.body().toString())
             if (response.isSuccessful) {

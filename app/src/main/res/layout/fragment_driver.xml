@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.osm.fragments.DriverFragment">
 
@@ -28,7 +28,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:shapeAppearanceOverlay="@style/roundedImage"
-                    android:src="@drawable/ado"/>
+                    android:src="@drawable/mymy"/>
 
                 <TextView
                     android:id="@+id/nameTextView"
@@ -80,6 +80,75 @@
                 android:layout_height="81dp"
                 android:layout_marginTop="20dp">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:padding="12dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Harga"
+                        android:id="@+id/hargaLabel"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="200000"
+                        android:id="@+id/hargaTextView"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="80dp"
+                        app:layout_constraintStart_toEndOf="@id/hargaLabel"
+                        app:layout_constraintTop_toTopOf="parent"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="200000"
+                        android:id="@+id/ongkirTextView"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="80dp"
+                        app:layout_constraintStart_toEndOf="@id/hargaLabel"
+                        app:layout_constraintTop_toBottomOf="@id/hargaTextView"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="200000"
+                        android:id="@+id/totalTextView"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="80dp"
+                        app:layout_constraintStart_toEndOf="@id/hargaLabel"
+                        app:layout_constraintTop_toBottomOf="@id/ongkirTextView"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Biaya Ongkit"
+                        android:id="@+id/biayaOngkirTextView"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/hargaLabel"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Harga"
+                        android:id="@+id/totalHargaTextView"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/biayaOngkirTextView"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -91,18 +160,60 @@
                 android:layout_height="81dp"
                 android:layout_marginTop="20dp">
 
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:padding="12dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:id="@+id/alamatLabel"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alamat"
+                        android:id="@+id/alamatTextView"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/alamatLabel"
+                        />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/metodePembayaranCardView"
-                app:layout_constraintTop_toBottomOf="@id/alamatCardView"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+            <Button
+                android:visibility="gone"
+                android:layout_marginHorizontal="50dp"
+                android:id="@+id/ambilPesananButton"
                 android:layout_width="match_parent"
-                android:layout_height="81dp"
-                android:layout_marginTop="20dp">
+                android:layout_height="55dp"
+                android:background="@drawable/custom_auth_button"
+                android:textColor="@color/white"
+                android:text="Ambil Pesanan"
+                app:layout_constraintTop_toBottomOf="@id/alamatCardView"
+                android:layout_marginTop="52dp"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            </androidx.cardview.widget.CardView>
+            <Button
+                android:visibility="gone"
+                android:layout_marginHorizontal="50dp"
+                android:id="@+id/selesaiButton"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@drawable/custom_auth_button"
+                android:textColor="@color/white"
+                android:text="Selesaikan Pesanan"
+                app:layout_constraintTop_toBottomOf="@id/alamatCardView"
+                android:layout_marginTop="52dp"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

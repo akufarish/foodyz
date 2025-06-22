@@ -1,5 +1,6 @@
 package com.example.stylish.ui.driver.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.example.stylish.data.model.DriverGetOrderRequest
 import com.example.stylish.data.model.Menu
 import com.example.stylish.data.model.Order
 import com.example.stylish.databinding.FragmentHomeDriverBinding
+import com.example.stylish.ui.osm.OsmActivity
 import com.example.stylish.viewmodel.LocationViewModel
 import com.example.stylish.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,6 +57,7 @@ class HomeDriverFragment : Fragment(), OrderViewModel.onMenuClickListener {
         orderViewModel.allOrder.observe(this) {response ->
             driverOrderAdapter.setData(response)
         }
+        binding.currentLocation.text = locationViewModel.getKota()
     }
 
     private fun setupRv() {
@@ -81,14 +84,20 @@ class HomeDriverFragment : Fragment(), OrderViewModel.onMenuClickListener {
     }
 
     override fun onDetailClick(order: Order) {
-        orderViewModel.driverTakeOrder(order.id.toInt(), onSuccess = {
-            response ->
-            Log.d("orderan", response.toString())
-            Log.d("id_orderan", response.id.toString())
-            Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
-        }, onError = {
-            resposne ->
-            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
-        })
-    }
+        if (order.is_taken == true) {
+            val intent = Intent(requireContext(), OsmActivity::class.java)
+            intent.putExtra("order", order)
+            startActivity(intent)
+        } else {
+            orderViewModel.driverTakeOrder(order.id.toInt(), onSuccess = {
+                    response ->
+                Log.d("orderan", response.toString())
+                Log.d("id_orderan", response.id.toString())
+                Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+            }, onError = {
+                    resposne ->
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+            })
+        }
+        }
 }

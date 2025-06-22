@@ -9,6 +9,7 @@ import com.example.stylish.data.model.Menu
 import com.example.stylish.data.model.Order
 import com.example.stylish.data.model.OrderRequest
 import com.example.stylish.data.model.RegisterResposnes
+import com.example.stylish.data.model.UpdateStatusOrder
 import com.example.stylish.data.repository.OrderRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -50,10 +51,53 @@ class OrderViewModel @Inject constructor(private val orderRepository: OrderRepos
         }
     }
 
+    fun updateStatusOrder(id: Int,payload: UpdateStatusOrder,  onSuccess: (Order) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = orderRepository.updateStatusOrder(id, payload)
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                _order.value = result.getOrNull()!!
+                Log.d("orderViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("orderViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+
 
     fun getAuthUserOrder(onSuccess: (List<Order>) -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             val result = orderRepository.getAuthUserOrder()
+
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                _allOrder.value = result.getOrNull()!!
+                Log.d("orderViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("orderViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+
+    fun getDriverHistory(onSuccess: (List<Order>) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = orderRepository.getDriverHistory()
+
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                _allOrder.value = result.getOrNull()!!
+                Log.d("orderViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("orderViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+    fun getMerchantHistory(onSuccess: (List<Order>) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = orderRepository.getMerchantHistory()
 
             if (result.isSuccess) {
                 onSuccess(result.getOrNull()!!)

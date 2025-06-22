@@ -21,8 +21,8 @@ class HistoryOrderAdapter @Inject constructor(private val listener: OrderViewMod
 
     inner class ViewHolder(val binding: HotelItemBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(data: Order) {
-            binding.hotelTitle.text = data.merchant.name
-            binding.foodLocation.text = data.merchant.address
+            binding.hotelTitle.text = data.merchant?.name
+            binding.foodLocation.text = data.merchant?.address
             binding.bookingButton.text = data.status
         }
     }

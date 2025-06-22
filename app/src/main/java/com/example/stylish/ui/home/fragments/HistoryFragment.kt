@@ -11,6 +11,7 @@ import com.example.stylish.adapter.HistoryOrderAdapter
 import com.example.stylish.data.model.Menu
 import com.example.stylish.data.model.Order
 import com.example.stylish.databinding.FragmentHistoryBinding
+import com.example.stylish.viewmodel.AuthViewModel
 import com.example.stylish.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +22,7 @@ class HistoryFragment : Fragment(), OrderViewModel.onMenuClickListener {
     private val binding get() = _binding!!
     private val orderViewModel: OrderViewModel by viewModels()
     private lateinit var historyOrderAdapter: HistoryOrderAdapter
+    private val authViewModel: AuthViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,11 +53,25 @@ class HistoryFragment : Fragment(), OrderViewModel.onMenuClickListener {
     }
 
     private fun getData() {
-        orderViewModel.getAuthUserOrder(onSuccess = { response ->
-            Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
-        }, onError = { response ->
-            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
-        })
+        if (authViewModel.getRole() == "user") {
+            orderViewModel.getAuthUserOrder(onSuccess = { response ->
+                Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+            }, onError = { response ->
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+            })
+        } else if (authViewModel.getRole() == "driver") {
+            orderViewModel.getDriverHistory(onSuccess = { response ->
+                Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+            }, onError = { response ->
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+            })
+        } else if (authViewModel.getRole() == "merchant") {
+            orderViewModel.getDriverHistory(onSuccess = { response ->
+                Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+            }, onError = { response ->
+                Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+            })
+        }
     }
 
     private fun setupRv() {

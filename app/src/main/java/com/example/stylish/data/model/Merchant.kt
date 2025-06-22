@@ -10,7 +10,9 @@ data class Merchant(
     val name: String,
     val address: String,
     val phone: String,
-    val status: String
+    val status: String,
+    val latitude: Double?,
+    val longtitude: Double?
 ): Parcelable
 
 data class CreateMerchantRequest(
