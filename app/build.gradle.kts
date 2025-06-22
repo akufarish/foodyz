@@ -78,4 +78,5 @@ dependencies {
 
     implementation("com.github.MKergall:osmbonuspack:6.9.0")
 
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 }

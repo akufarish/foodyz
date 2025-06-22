@@ -56,8 +56,16 @@ class HomeDriverFragment : Fragment(), OrderViewModel.onMenuClickListener {
         getData()
         orderViewModel.allOrder.observe(this) {response ->
             driverOrderAdapter.setData(response)
+            binding.swipeRefresh.isRefreshing = false
         }
         binding.currentLocation.text = locationViewModel.getKota()
+        binding.swipeRefresh.setOnRefreshListener {
+            refreshData()
+        }
+    }
+
+    private fun refreshData() {
+        getData()
     }
 
     private fun setupRv() {
