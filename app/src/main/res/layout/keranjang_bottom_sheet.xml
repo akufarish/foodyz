@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:padding="12dp"
+    android:background="@drawable/custom_card_top"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodName"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Nasi Goreng"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        app:shapeAppearanceOverlay="@style/roundedTopImage"
+        android:id="@+id/foodImage"
+        app:layout_constraintTop_toBottomOf="@+id/foodName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:layout_width="128dp"
+        android:layout_height="103.3dp"
+        android:src="@drawable/food1" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_auth_button"
+        android:text="-"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/foodImage"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/minButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/stokValueTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="1"
+        app:layout_constraintStart_toEndOf="@id/minButton"
+        android:layout_marginLeft="20dp"
+        android:textSize="20sp"
+        android:layout_marginTop="30dp"
+        />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_auth_button"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/stokValueTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/plusButton" />
+
+    <EditText
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:hint="Catatan"
+        android:paddingHorizontal="12dp"
+        android:layout_width="250dp"
+        android:layout_height="55dp"
+        android:background="@drawable/custom_auth_input"
+        app:layout_constraintTop_toBottomOf="@id/stokValueTextView"
+        android:layout_marginTop="36dp"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@id/foodImage"
+        android:id="@+id/catatnEditText" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_auth_button"
+        android:text="Tambah keranjang"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/foodImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/catatnEditText"
+        android:layout_marginTop="12dp"
+        android:id="@+id/keranjangButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

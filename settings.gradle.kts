@@ -16,6 +16,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Stylish"
+rootProject.name = "TugasBesar"
 include(":app")
  

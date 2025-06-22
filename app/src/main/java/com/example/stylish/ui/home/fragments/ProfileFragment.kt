@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.stylish.R
 import com.example.stylish.databinding.FragmentProfileBinding
 import com.example.stylish.ui.auth.AuthActivity
@@ -38,6 +39,14 @@ class ProfileFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         logout()
+
+        binding.accountSettingConstraintLayout.setOnClickListener {
+            findNavController().navigate(R.id.editProfileFragment)
+        }
+
+        binding.feedBackLayout.setOnClickListener {
+            findNavController().navigate(R.id.feedbackFragment)
+        }
     }
 
     private fun logout() {

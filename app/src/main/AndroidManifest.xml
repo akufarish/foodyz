@@ -33,9 +33,9 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".ui.osm.OsmActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".ui.osm.OsmActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.auth.AuthActivity"
             android:exported="false" />
@@ -52,7 +52,7 @@
             android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.osm.OsmActivity"
+            android:name=".ui.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

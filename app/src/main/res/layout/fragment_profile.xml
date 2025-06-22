@@ -125,7 +125,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:background="@drawable/custom_card_top"
                 android:layout_width="match_parent"
-                android:id="@+id/languageSettingConstraintLayout"
+                android:id="@+id/feedBackLayout"
                 app:layout_constraintTop_toBottomOf="@+id/accountSettingConstraintLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -168,7 +168,7 @@
                 android:background="@drawable/custom_card_bot"
                 android:layout_width="match_parent"
                 android:id="@+id/newVersionSettingConstraintLayout"
-                app:layout_constraintTop_toBottomOf="@+id/languageSettingConstraintLayout"
+                app:layout_constraintTop_toBottomOf="@+id/feedBackLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:paddingHorizontal="24dp"

@@ -5,15 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.stylish.R
-import com.example.stylish.databinding.FragmentHomeBinding
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import com.example.stylish.adapter.HistoryOrderAdapter
+import com.example.stylish.data.model.Menu
+import com.example.stylish.databinding.FragmentHistoryBinding
+import com.example.stylish.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment(), OrderViewModel.onMenuClickListener {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
+    private val orderViewModel: OrderViewModel by viewModels()
+    private lateinit var historyOrderAdapter: HistoryOrderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,8 +31,39 @@ class HistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentHistoryBinding.inflate(layoutInflater, container, false)
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setupRv()
+        getData()
+        orderViewModel.allOrder.observe(this) {response ->
+            historyOrderAdapter.setData(response)
+        }
+    }
+
+    private fun getData() {
+        orderViewModel.getAuthUserOrder(onSuccess = { response ->
+            Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+        }, onError = { response ->
+            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    private fun setupRv() {
+        historyOrderAdapter = HistoryOrderAdapter(this)
+        binding.keranjangItemRecyclerView.adapter = historyOrderAdapter
+    }
+
+    override fun onDetailClick(menu: Menu) {
+        TODO("Not yet implemented")
     }
 
 }

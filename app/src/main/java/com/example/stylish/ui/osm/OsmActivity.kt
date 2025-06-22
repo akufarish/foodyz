@@ -8,8 +8,11 @@ import android.location.Geocoder
 import android.location.GpsStatus
 import android.location.Location
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -100,6 +103,8 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
         }
 
         if(!isShow) getLocationAndProceed()
+
+        setupSearchLocation()
     }
 
 
@@ -313,5 +318,69 @@ class OsmActivity : AppCompatActivity(), MapListener, GpsStatus.Listener {
             }
         }.start()
     }
+
+    private fun setupSearchLocation() {
+        val searchBox = binding?.locationEditText
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line)
+        searchBox?.setAdapter(adapter)
+        searchBox?.threshold = 2
+
+        val geocoder = org.osmdroid.bonuspack.location.GeocoderNominatim("your_user_agent_here")
+
+        searchBox?.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {}
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(query: CharSequence?, start: Int, before: Int, count: Int) {
+                if (query != null && query.length > 2) {
+                    Thread {
+                        try {
+                            val results = geocoder.getFromLocationName(query.toString(), 5)
+                            runOnUiThread {
+                                adapter.clear()
+                                adapter.addAll(results.map {
+                                    listOfNotNull(it.featureName, it.locality, it.adminArea)
+                                        .joinToString(", ")
+                                })
+                                adapter.notifyDataSetChanged()
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    }.start()
+                }
+            }
+        })
+
+        searchBox?.setOnItemClickListener { _, _, _, _ ->
+            val locationQuery = searchBox.text.toString()
+            Thread {
+                try {
+                    val results = geocoder.getFromLocationName(locationQuery, 1)
+                    if (!results.isNullOrEmpty()) {
+                        val loc = results[0]
+                        val point = GeoPoint(loc.latitude, loc.longitude)
+                        runOnUiThread {
+                            val map = binding?.osmMapView!!
+                            map.controller.setCenter(point)
+                            map.controller.setZoom(17.0)
+
+                            val marker = Marker(map).apply {
+                                position = point
+                                setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                                title = locationQuery
+                            }
+                            map.overlays.add(marker)
+                            map.invalidate()
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }.start()
+        }
+    }
+
 
 }

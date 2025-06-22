@@ -34,6 +34,34 @@
             android:layout_marginBottom="32dp"
             android:layout_marginStart="12dp"/>
 
+        <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:id="@+id/foodPrice"
+            android:text="1000"
+            app:layout_constraintStart_toEndOf="@id/foodLocation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="12dp"/>
+
+        <TextView
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:id="@+id/foodStock"
+            android:text="1"
+            app:layout_constraintStart_toEndOf="@id/foodPrice"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="12dp"/>
+
         <ImageView
             android:id="@+id/locationIcon"
             android:layout_width="9dp"

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.stylish.data.service.AuthService
 import com.example.stylish.data.service.MenuService
+import com.example.stylish.data.service.OrderService
 import com.example.stylish.utils.AuthInterceptor
 import dagger.Module
 import dagger.Provides
@@ -18,7 +19,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
-    var BASE_URL = "https://cbed-180-248-134-103.ngrok-free.app/"
+    var BASE_URL = "https://d105-180-248-134-103.ngrok-free.app/"
 
     @Provides
     @Singleton
@@ -71,6 +72,12 @@ object NetworkModule {
     @Singleton
     fun provideMenuApiService(retrofit: Retrofit) : MenuService {
         return retrofit.create(MenuService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOrderApiService(retrofit: Retrofit) : OrderService {
+        return retrofit.create(OrderService::class.java)
     }
 
     @Provides

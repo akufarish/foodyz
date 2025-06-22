@@ -5,28 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.example.stylish.R
+import com.example.stylish.adapter.UserOrderAdapter
+import com.example.stylish.data.model.Menu
+import com.example.stylish.databinding.FragmentKeranjangBinding
+import com.example.stylish.viewmodel.OrderViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class KeranjangFragment : Fragment(), OrderViewModel.onMenuClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [KeranjangFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class KeranjangFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentKeranjangBinding? = null
+    private val binding get() = _binding!!
+    private val orderViewModel: OrderViewModel by viewModels()
+    private lateinit var userOrderAdapter: UserOrderAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -34,27 +32,41 @@ class KeranjangFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_keranjang, container, false)
+        _binding = FragmentKeranjangBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment KeranjangFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            KeranjangFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        setupRv()
+        getCurrentData()
+        orderViewModel.order.observe(this) {response ->
+            userOrderAdapter.setData(response)
+        }
+    }
+
+    private fun setupRv() {
+        userOrderAdapter = UserOrderAdapter(this, requireContext())
+        userOrderAdapter.fragmentKeranjangBinding = _binding
+        binding.keranjangItemRecyclerView.adapter = userOrderAdapter
+    }
+
+    private fun getCurrentData() {
+        orderViewModel.getCurrentOrder(onSuccess = {
+            response ->
+            Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+        }, onError = {
+            response ->
+            Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()
+        })
+    }
+
+    override fun onDetailClick(menu: Menu) {
+        TODO("Not yet implemented")
     }
 }

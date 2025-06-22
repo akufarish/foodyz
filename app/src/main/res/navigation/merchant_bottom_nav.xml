@@ -30,4 +30,14 @@
         android:name="com.example.stylish.ui.merchant.fragment.AllMenuFragment"
         android:label="fragment_all_menu"
         tools:layout="@layout/fragment_all_menu" />
+    <fragment
+        android:id="@+id/editProfileFragment2"
+        android:name="com.example.stylish.ui.profile.fragments.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/feedbackFragment2"
+        android:name="com.example.stylish.ui.profile.fragments.FeedbackFragment"
+        android:label="fragment_feedback"
+        tools:layout="@layout/fragment_feedback" />
 </navigation>

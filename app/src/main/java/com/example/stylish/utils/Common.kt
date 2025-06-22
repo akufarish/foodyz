@@ -1,4 +1,9 @@
 package com.example.stylish.utils
 
-class Common {
+import java.text.NumberFormat
+import java.util.Locale
+
+fun formatCurrency(nominal: Int): String {
+
+    return NumberFormat.getCurrencyInstance(Locale("id", "ID")).format(nominal)
 }
