@@ -45,7 +45,7 @@ import java.util.Locale
 class DetailMakananActivity : AppCompatActivity() {
     private var _binding: ActivityDetailMakananBinding? = null
     private val binding get() = _binding
-    private val locationViewMenu: LocationViewModel by viewModels()
+    private val locatioViewModel: LocationViewModel by viewModels()
     private val orderViewModel: OrderViewModel by viewModels()
     private var isShow = false
     private var isLocationDialogShown = false
@@ -54,6 +54,7 @@ class DetailMakananActivity : AppCompatActivity() {
     private lateinit var kota: String
     private var latitude: Double? = null
     private var longtitude: Double? = null
+    private var lokasi: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -106,7 +107,7 @@ class DetailMakananActivity : AppCompatActivity() {
                 if (menu != null) {
                     val payload = OrderRequest(
                         merchant_id = menu.merchants.id,
-                        location = locationViewMenu.getLokasi().toString(),
+                        location = lokasi!!,
                         menu = listOf(
                             MenuOrderRequest(
                                 id = menu.id,
@@ -236,10 +237,12 @@ class DetailMakananActivity : AppCompatActivity() {
         return if (!addresses.isNullOrEmpty()) {
             var cityName = addresses[0].subAdminArea
             val lokasiSaatIni = addresses[0].getAddressLine(0).substringAfter(",").trim()
+            locatioViewModel.setLokasi(lokasiSaatIni)
             cityName = cityName?.replace("Kota ", "")?.replace("Kabupaten ", "")
             kota = cityName
             Log.d("kota", cityName)
             Log.d("lokasiSaatIni", lokasiSaatIni)
+            lokasi = lokasiSaatIni
             cityName
         } else {
             null

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.stylish.R
 import com.example.stylish.adapter.UserOrderAdapter
 import com.example.stylish.data.model.Menu
+import com.example.stylish.data.model.Order
 import com.example.stylish.databinding.FragmentKeranjangBinding
 import com.example.stylish.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,7 +67,7 @@ class KeranjangFragment : Fragment(), OrderViewModel.onMenuClickListener {
         })
     }
 
-    override fun onDetailClick(menu: Menu) {
+    override fun onDetailClick(order: Order) {
         TODO("Not yet implemented")
     }
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.stylish.data.model.DriverGetOrderRequest
 import com.example.stylish.data.model.Menu
 import com.example.stylish.data.model.Order
 import com.example.stylish.data.model.OrderRequest
@@ -35,10 +36,39 @@ class OrderViewModel @Inject constructor(private val orderRepository: OrderRepos
         }
     }
 
+    fun driverTakeOrder(id: Int, onSuccess: (Order) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = orderRepository.driverTakeOrder(id)
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                _order.value = result.getOrNull()!!
+                Log.d("orderViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("orderViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+
+
     fun getAuthUserOrder(onSuccess: (List<Order>) -> Unit, onError: (String) -> Unit) {
         viewModelScope.launch {
             val result = orderRepository.getAuthUserOrder()
 
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                _allOrder.value = result.getOrNull()!!
+                Log.d("orderViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("orderViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+
+    fun driverGetOrder(payload: DriverGetOrderRequest, onSuccess: (List<Order>) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = orderRepository.driverGetOrder(payload)
             if (result.isSuccess) {
                 onSuccess(result.getOrNull()!!)
                 _allOrder.value = result.getOrNull()!!
@@ -65,6 +95,6 @@ class OrderViewModel @Inject constructor(private val orderRepository: OrderRepos
 
 
     interface onMenuClickListener {
-        fun onDetailClick(menu: Menu)
+        fun onDetailClick(order: Order)
     }
 }

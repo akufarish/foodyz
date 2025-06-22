@@ -56,3 +56,7 @@ data class MenuOrderRequest(
     val stok: Int,
     val catatan: String
 )
+
+data class DriverGetOrderRequest(
+    val lokasi: String
+)

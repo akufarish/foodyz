@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.stylish.adapter.HistoryOrderAdapter
 import com.example.stylish.data.model.Menu
+import com.example.stylish.data.model.Order
 import com.example.stylish.databinding.FragmentHistoryBinding
 import com.example.stylish.viewmodel.OrderViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,7 +63,7 @@ class HistoryFragment : Fragment(), OrderViewModel.onMenuClickListener {
         binding.keranjangItemRecyclerView.adapter = historyOrderAdapter
     }
 
-    override fun onDetailClick(menu: Menu) {
+    override fun onDetailClick(order: Order) {
         TODO("Not yet implemented")
     }
 
