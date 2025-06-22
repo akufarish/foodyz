@@ -47,7 +47,7 @@ class KeranjangFragment : Fragment(), OrderViewModel.onMenuClickListener {
         setupRv()
         getCurrentData()
         orderViewModel.order.observe(this) {response ->
-            userOrderAdapter.setData(response)
+            userOrderAdapter.setData(response.detail_order)
         }
     }
 
