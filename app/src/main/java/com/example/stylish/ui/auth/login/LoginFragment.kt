@@ -13,6 +13,7 @@ import com.example.stylish.databinding.FragmentLoginBinding
 import com.example.stylish.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.viewModels
+import com.example.stylish.ui.auth.forgotPassword.ForgotPasswordActivity
 import com.example.stylish.ui.driver.activity.DriverHomeActivity
 import com.example.stylish.ui.merchant.activity.MakeMerchantActivity
 import com.example.stylish.ui.merchant.activity.MerchantHomeActivity
@@ -42,6 +43,11 @@ class LoginFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         login()
+        binding.forgotPassword.setOnClickListener {
+            startActivity(
+                Intent(requireContext(), ForgotPasswordActivity::class.java)
+            )
+        }
     }
 
     private fun login() {

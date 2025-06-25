@@ -54,7 +54,7 @@
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     app:shapeAppearanceOverlay="@style/roundedImage"
-                    android:src="@drawable/mymy"/>
+                    android:src="@drawable/profiles"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

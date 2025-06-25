@@ -28,7 +28,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:shapeAppearanceOverlay="@style/roundedImage"
-                android:src="@drawable/mymy"/>
+                android:src="@drawable/toko"/>
 
             <TextView
                 android:id="@+id/nameTextView"

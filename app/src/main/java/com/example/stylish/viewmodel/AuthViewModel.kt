@@ -6,8 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.stylish.data.model.LoginRequest
 import com.example.stylish.data.model.LoginResposnes
 import com.example.stylish.data.model.LogoutResposne
+import com.example.stylish.data.model.OtpRequest
+import com.example.stylish.data.model.OtpResponse
 import com.example.stylish.data.model.RegisterRequest
 import com.example.stylish.data.model.RegisterResposnes
+import com.example.stylish.data.model.SendPassword
 import com.example.stylish.data.repository.AuthRepository
 import com.example.stylish.utils.di.SharedPrefHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -85,5 +88,41 @@ class AuthViewModel @Inject constructor(private val authRepository: AuthReposito
 
     fun getRole() : String? {
         return sharedPrefHelper.getRole()
+    }
+
+    fun getCurrentState(): String? {
+        return sharedPrefHelper.getCurrentState()
+    }
+
+    fun setCurrentState(state: String) {
+        return sharedPrefHelper.setCurrentState(state)
+    }
+
+    fun sendOtp(payload: SendPassword, onSuccess: (OtpResponse) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = authRepository.sendOtp(payload)
+
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                Log.d("RegisterViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("RegisterViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
+    }
+
+    fun resetPassword(payload: SendPassword, onSuccess: (OtpResponse) -> Unit, onError: (String) -> Unit) {
+        viewModelScope.launch {
+            val result = authRepository.sendOtp(payload)
+
+            if (result.isSuccess) {
+                onSuccess(result.getOrNull()!!)
+                Log.d("RegisterViewModel", "Register success: ${result.getOrNull()}")
+            } else {
+                onError(result.exceptionOrNull()?.message ?: "Unknown error")
+                Log.d("RegisterViewModel", "Register error ${result.exceptionOrNull()?.message}")
+            }
+        }
     }
 }

@@ -37,3 +37,17 @@ data class LogoutResposne(
     val errors: String,
     val content: String
 )
+
+data class SendPassword(
+    val email: String,
+)
+
+data class OtpRequest(
+    val email: String,
+    val otp: String
+)
+
+data class OtpResponse(
+    val otp: String,
+    val message: String?
+)

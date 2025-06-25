@@ -37,4 +37,13 @@ class SharedPrefHelper @Inject constructor(context : Context)  {
         return sharedPref.getString("kota", null)
     }
 
+    fun setCurrentState(state: String) {
+        return sharedPref.edit().putString("currentState", state).apply()
+    }
+
+    fun getCurrentState(): String? {
+        return sharedPref.getString("currentState", null)
+    }
+
+
 }
